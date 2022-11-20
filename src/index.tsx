@@ -5,6 +5,9 @@ import {
   RouterProvider,
   // Route,
 } from 'react-router-dom';
+import CssBaseline from '@mui/material/CssBaseline';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
@@ -25,14 +28,19 @@ const router = createBrowserRouter([
   }
 ]);
 
+const theme = createTheme();
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <WalletSelectorContextProvider>
-      <RouterProvider router={router} />
-    </WalletSelectorContextProvider>
+    <CssBaseline />
+    <ThemeProvider theme={theme}>
+      <WalletSelectorContextProvider>
+        <RouterProvider router={router} />
+      </WalletSelectorContextProvider>
+    </ThemeProvider>
   </React.StrictMode>
 );
 

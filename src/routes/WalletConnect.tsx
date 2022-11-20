@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import Button from '@mui/material/Button';
 
 import { useWalletSelector } from '../contexts/WalletSelectorContext';
 
@@ -44,11 +45,11 @@ const WalletConnect = () => {
       {accountId ?
         <>
           <h2>Hello {accountId}</h2>
-          <button onClick={handleSignOut}>Log out</button>
-          <button onClick={handleVerifyOwner}>Verify Owner</button>
+          <Button variant="contained" onClick={handleSignOut}>Log out</Button>
+          <Button variant="contained" onClick={handleVerifyOwner}>Verify Owner</Button>
         </>
         :
-        <button onClick={handleSignIn}>Log in</button>
+        <Button variant="contained" onClick={handleSignIn}>Log in</Button>
       }
     </div>
   );
