@@ -6,8 +6,10 @@ import {
   // Route,
 } from 'react-router-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+import App from './App';
+import WalletConnect from './routes/WalletConnect';
 
 import { WalletSelectorContextProvider } from "./contexts/WalletSelectorContext";
 import "@near-wallet-selector/modal-ui/styles.css";
@@ -17,6 +19,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
   },
+  {
+    path: '/connect-wallet',
+    element: <WalletConnect />
+  }
 ]);
 
 const root = ReactDOM.createRoot(
