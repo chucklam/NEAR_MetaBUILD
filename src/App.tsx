@@ -23,6 +23,23 @@ const App: React.FC = () => {
     });
   };
 
+  const handleVerifyOwner = async () => {
+    const wallet = await selector.wallet();
+    try {
+      const owner = await wallet.verifyOwner({
+        message: "test message for verification",
+      });
+
+      if (owner) {
+        alert(`Signature for verification: ${JSON.stringify(owner)}`);
+      }
+    } catch (err) {
+      const message =
+        err instanceof Error ? err.message : "Something went wrong";
+      alert(message);
+    }
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -40,6 +57,7 @@ const App: React.FC = () => {
         </a>
         <button onClick={handleSignIn}>Log in</button>
         <button onClick={handleSignOut}>Log out</button>
+        <button onClick={handleVerifyOwner}>Verify Owner</button>
       </header>
     </div>
   );
