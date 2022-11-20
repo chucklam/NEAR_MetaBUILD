@@ -1,10 +1,10 @@
 import React from 'react';
 
-const App = () => {
+const Signup = () => {
 
   return (
     <h1>Hello World!</h1>
   );
 }
 
-export default App;
+export default Signup;

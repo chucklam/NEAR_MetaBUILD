@@ -11,7 +11,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
-import App from './App';
+import Signup from './Signup';
 import WalletConnect from './routes/WalletConnect';
 
 import { WalletSelectorContextProvider } from "./contexts/WalletSelectorContext";
@@ -20,7 +20,7 @@ import "@near-wallet-selector/modal-ui/styles.css";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Signup />,
   },
   {
     path: '/connect-wallet',
