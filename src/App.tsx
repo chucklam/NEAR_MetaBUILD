@@ -2,7 +2,13 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+import { useWalletSelector } from "./contexts/WalletSelectorContext";
+
+const App: React.FC = () => {
+  const { selector, modal, accounts, accountId } = useWalletSelector();
+
+  const handleSignIn = () => modal.show();
+
   return (
     <div className="App">
       <header className="App-header">
@@ -18,6 +24,7 @@ function App() {
         >
           Learn React
         </a>
+        <button onClick={handleSignIn}>Log in</button>
       </header>
     </div>
   );
