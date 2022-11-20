@@ -4,12 +4,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { WalletSelectorContextProvider } from "./contexts/WalletSelectorContext";
+import "@near-wallet-selector/modal-ui/styles.css";
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <WalletSelectorContextProvider>
+      <App />
+    </WalletSelectorContextProvider>
   </React.StrictMode>
 );
 
