@@ -11,7 +11,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
-import Signup from './Signup';
+import Signup from './routes/Signup';
 import WalletConnect from './routes/WalletConnect';
 
 import { WalletSelectorContextProvider } from "./contexts/WalletSelectorContext";
