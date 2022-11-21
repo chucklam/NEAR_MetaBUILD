@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Box, Button, CircularProgress, Container, TextField, Typography } from '@mui/material';
 import banner from '../assets/NEAR_GCash.png';
 import { useFormik } from 'formik';
@@ -31,6 +32,8 @@ enum Form {
 }
 
 const Signup = () => {
+  const navigate = useNavigate();
+
   const country = 'PH';
 
   // Configure Formik to handle form submission
@@ -59,6 +62,8 @@ const Signup = () => {
       // TODO: Submit to API
       console.log(values);
       console.log(phoneE164);
+      await new Promise(resolve => setTimeout(resolve, 3000));
+      navigate(`/account/${phoneE164}/otp`);
     },
   });
 

@@ -12,6 +12,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 
 import Signup from './routes/Signup';
+import OTP from './routes/OTP';
 import WalletConnect from './routes/WalletConnect';
 
 import { WalletSelectorContextProvider } from "./contexts/WalletSelectorContext";
@@ -24,8 +25,12 @@ const router = createBrowserRouter([
   },
   {
     path: '/connect-wallet',
-    element: <WalletConnect />
-  }
+    element: <WalletConnect />,
+  },
+  {
+    path: '/account/:phone/otp',
+    element: <OTP />,
+  },
 ]);
 
 const theme = createTheme();
