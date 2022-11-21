@@ -13,6 +13,7 @@ import reportWebVitals from './reportWebVitals';
 
 import Signup from './routes/Signup';
 import OTP from './routes/OTP';
+import Confirmed from './routes/Confirmed';
 import WalletConnect from './routes/WalletConnect';
 
 import { WalletSelectorContextProvider } from "./contexts/WalletSelectorContext";
@@ -24,12 +25,16 @@ const router = createBrowserRouter([
     element: <Signup />,
   },
   {
-    path: '/connect-wallet',
-    element: <WalletConnect />,
-  },
-  {
     path: '/account/:phone/otp',
     element: <OTP />,
+  },
+  {
+    path: '/confirmed',
+    element: <Confirmed />,
+  },
+  {
+    path: '/connect-wallet',
+    element: <WalletConnect />,
   },
 ]);
 

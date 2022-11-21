@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Avatar, Box, Button, CircularProgress, Container, TextField, Typography } from "@mui/material";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { useFormik } from "formik";
@@ -56,6 +56,7 @@ const OTPInput: FC<{ onSubmit: OTPSubmission }> = ({ onSubmit }) => {
 
 const OTP = () => {
   let { phone } = useParams();
+  const navigate = useNavigate();
 
   return (
     <Container component="main" maxWidth="xs">
@@ -76,6 +77,8 @@ const OTP = () => {
         </Typography>
         <OTPInput onSubmit={async (otp: string) => {
           console.log('otp', otp);
+          await new Promise(resolve => setTimeout(resolve, 5000));
+          navigate(`/confirmed`);
         }} />
       </Box>
     </Container>
