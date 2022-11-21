@@ -3,6 +3,25 @@ import { Box, Button, CircularProgress, Container, TextField, Typography } from 
 import banner from '../assets/NEAR_GCash.png';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import { AsYouTypeFormatter, PhoneNumberFormat as PNF, PhoneNumberUtil } from 'google-libphonenumber';
+
+const phoneUtil = PhoneNumberUtil.getInstance();
+
+// Format a (possibly incomplete) phone number
+const formatPhoneNumber = (phone: string, country: string) => {
+
+  // Remove non-numeric digits as they seem to confuse the formatter.
+  let phoneNumber = phone.replace(/[^0-9]/g, '');
+
+  const formatter = new AsYouTypeFormatter(country);
+  formatter.clear();
+  let formattedPhoneNumber = '';
+  for (let digit of phoneNumber) {
+    formattedPhoneNumber = formatter.inputDigit(digit);
+  }
+
+  return formattedPhoneNumber;
+};
 
 enum Form {
   PHONE = 'phone',
@@ -12,6 +31,7 @@ enum Form {
 }
 
 const Signup = () => {
+  const country = 'PH';
 
   // Configure Formik to handle form submission
   const initialValues: { [key in Form]: string } = {
@@ -23,7 +43,9 @@ const Signup = () => {
     phone:     yup.string().required('Phone number is required')
       .test('valid phone number', 'Invalid phone number', value => {
         if (!value || value.length < 2) return false;
-        return true;
+
+        const number = phoneUtil.parse(value, country);
+        return phoneUtil.isValidNumber(number);
       }),
     nearSubaccount:  yup.string().required('NEAR account name is required'),
   };
@@ -31,7 +53,12 @@ const Signup = () => {
     initialValues,
     validationSchema: yup.object(yupSchemaObject),
     onSubmit: async (values) => {
+      const phone = phoneUtil.parse(values.phone, country);
+      const phoneE164 = phoneUtil.format(phone, PNF.E164);
+
+      // TODO: Submit to API
       console.log(values);
+      console.log(phoneE164);
     },
   });
 
@@ -53,7 +80,7 @@ const Signup = () => {
           </Typography>
           <Box component="form" onSubmit={formik.handleSubmit} sx={{ mt: 1, width: '100%' }}>
             <TextField
-              label="Phone Number *"
+              label="Phone Number (+63) *"
               type="tel"
               autoComplete="tel-national"
               name={Form.PHONE}
@@ -62,7 +89,8 @@ const Signup = () => {
               fullWidth
               value={formik.values.phone}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                formik.setFieldValue(Form.PHONE, e.target.value);
+                const formattedPhoneNumber = formatPhoneNumber(e.target.value, country);
+                formik.setFieldValue(Form.PHONE, formattedPhoneNumber);
               }}
               error={formik.touched.phone && Boolean(formik.errors.phone)}
               helperText={formik.touched.phone && formik.errors.phone}
