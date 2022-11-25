@@ -36,6 +36,7 @@
     "formik": "^2.2.9",
     "google-libphonenumber": "^3.2.31",
     "near-api-js": "^0.44.2",
+    "near-lake-framework": "^1.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.3",
@@ -48,7 +49,8 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "eject": "react-app-rewired eject"
+    "eject": "react-app-rewired eject",
+    "near-lake-ft-monitor": "ts-node-esm scripts/near-lake-ft-monitor.ts"
   },
   "eslintConfig": {
     "extends": [
@@ -79,6 +81,7 @@
     "react-app-rewired": "^2.2.1",
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
+    "ts-node": "^10.9.1",
     "url": "^0.11.0"
   }
 }
