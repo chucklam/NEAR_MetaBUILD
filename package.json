@@ -50,7 +50,8 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
-    "near-lake-ft-monitor": "ts-node-esm scripts/near-lake-ft-monitor.ts"
+    "near-lake-ft-monitor": "ts-node-esm scripts/near-lake-ft-monitor.ts",
+    "update-keystore-from-seedphrase": "ts-node scripts/update-keystore"
   },
   "eslintConfig": {
     "extends": [
